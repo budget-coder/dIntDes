@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ataraxia: Dit elforbrug</title>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> <!--JavaScript bibliotek-->
+        <script src="main.js"></script> <!-- Vores js-fil -->
+    </head>
+    <body>
+        <div id="wrapper">
+            <table id="top">
+                <tr>
+                    <td class="alignTextRight">
+                        <pre>
+                            Nuværende forbrug: --- kWh.<!-- Brug en slags formular til at hente data-->
+                            Nuværende grænse: --- kWh / time<!-- Ligesom før. "Time" er noget, brugeren har defineret-->
+                            Dagsforbrug: --- kWh.
+                            Forbrug for i går: kWh.
+                        </pre>
+                    </td>
+                    <td> <img class="divCenter" id="smiley" src="media/smiley.png" alt="Smiley."></td>
+                    <td class="alignTextLeft">
+                        <pre>
+                            <span class="hoverHelp">Status: Godt!</span><!-- Sammenlign nuværende forbrug med grænse. Der burde være et spørgsmålstegn på "status",
+                                              så man med musen kan få en hjælpeboks med forklaring af "status".-->
+                            Pris for el pt.: --- kWh (normalt)<!-- Ses kun, hvis man har angivet, at man har sådan en aftale
+                                                                   "Normalt" fortæller, om brugeren skal bruge en masse strøm nu eller ej.-->
+                        </pre>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <br/> <br/> <br/>
+        <img class="divCenter hoverClick" id="button" src="media/button.png" alt="button"/> <!-- http://dabuttonfactory.com/ -->
+        <br/>
+        <img class="divCenter" id="graph" src="media/graph.png" alt="graph"/>
+    </body>
+</html>

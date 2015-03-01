@@ -1,0 +1,128 @@
+* {
+    font-size:20px;
+}
+
+body {
+    font-family: "times new roman";
+    background-image:url("media/bgimage2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* LORT VIRKER IKKE
+.buttonAnimate {
+    -moz-animation-name: BUTTON;
+    -moz-animation-duration: 0.5s;
+    -moz-animation-iteration-count: 1;
+    
+    -webkit-animation-name: BUTTON;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-iteration-count: 1;
+} */
+/*
+@-moz-keyframes BUTTON { /* For Firefox */
+    /* LORTET VIRKER IKKE
+    0% {
+        // top: 72px;
+        opacity:0;
+    }
+    40% {
+        // top: 57px;
+        opacity:0.5;
+    }
+    70% {
+        // top: 56px;
+        opacity:0.9;
+    }
+
+    80% {                
+        // top: 112px;
+        opacity:0.5;
+    }
+
+    100% {
+        // top: 72px;
+        opacity:0;
+    }
+} */
+/*
+@-webkit-keyframes BUTTON { /* For Chrome */
+    /* LORTET VIRKER IKKE
+    0% {
+        top: 72px;
+    }
+    40% {
+        top: 57px;
+    }
+    70% {
+        top: 56px;
+    }
+
+    80% {                
+        top: 112px;
+    }
+
+    100% {
+        top: 72px;
+    }
+} */
+
+.centerText {   
+    text-align:center;
+}
+
+.divCenter {
+    margin:0 auto;
+}
+
+.alignTextLeft {
+    text-align:left;
+}
+
+.alignTextRight {
+    text-align:right;
+}
+
+br {
+    display:block;
+    margin:5px 0;
+}
+
+div#wrapper {
+    margin:0 auto;
+    width:900px;
+}
+
+img,table {
+    display:block;
+    margin-top:10%;
+}
+
+td {
+    padding-left:10px;
+    width: 300px; /* For some reason, this works in centering the table...*/
+    color:#0b0bf1;
+}
+
+td pre {
+    background-color: #ffffff;
+    border-radius: 3px;
+    font-family: inherit;
+    padding: 3px;
+    white-space: pre-line;
+}
+
+span.link {
+    color:blue;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+.hoverClick:hover {
+    opacity: 0.8;
+    cursor:pointer;
+}
+
+.hoverHelp:hover {
+    opacity: 0.8;
+    cursor:help;
+}
