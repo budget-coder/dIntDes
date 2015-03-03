@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#graph").hide();
+/*    $("#graph").hide();
 });
 
 $(function () {
@@ -13,8 +13,14 @@ function clickHandler() {
 }
 
 function doAnimate() {
-    $("#graph").hide().delay(350).slideDown(800);
-}
+    $("#graph").delay(900).slideDown(800); // Bemærk, at slideDown kun virker, når elementet er skjult.
+    Derfor kører animationen ikke mere end to gange!
+}*/
+
+$("#button").on("click", function() {
+	$("#graph").slideToggle();
+});
+});
 
 //
 //function buttonclicked() {

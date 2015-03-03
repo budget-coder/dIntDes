@@ -8,6 +8,11 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+#graph {
+	display: none
+}
+
 /* LORT VIRKER IKKE
 .buttonAnimate {
     -moz-animation-name: BUTTON;
