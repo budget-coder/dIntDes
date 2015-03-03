@@ -20,6 +20,14 @@ function doAnimate() {
 $("#button").on("click", function() {
 	$("#graph").slideToggle();
 });
+
+$("#current").load("http://www.nordpoolspot.com/#/nordic/table a[href*='SYS1/Daily/?view=table&curr=DKK']", function( response, status, xhr ) {
+			var msg = "Response code: ";
+		    $("#error").html( msg + xhr.status + " " + xhr.statusText );
+		}).find("div[ng-bind*='value']").getValue(); 
+
+//$("#current").load("http://www.nordpoolspot.com/#/nordic/table a[href*='SYS1/Daily/?view=table&curr=DKK']").find("div[ng-bind*='value']").getValue();
+
 });
 
 //
