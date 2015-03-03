@@ -26,6 +26,8 @@ $("#current").load("http://www.nordpoolspot.com/#/nordic/table a[href*='SYS1/Dai
 		    $("#error").html( msg + xhr.status + " " + xhr.statusText );
 		}).find("div[ng-bind*='value']").getValue(); 
 
+$("#datatable").load("http://www.nordpoolspot.com/Market-data1/Elspot/Area-Prices/DK/Hourly/?view=table #datatable");
+
 //$("#current").load("http://www.nordpoolspot.com/#/nordic/table a[href*='SYS1/Daily/?view=table&curr=DKK']").find("div[ng-bind*='value']").getValue();
 
 });
