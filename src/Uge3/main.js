@@ -1,5 +1,5 @@
 $(document).ready(function () {
-/*    $("#graph").hide();
+	/*    $("#graph").hide();
 });
 
 $(function () {
@@ -17,30 +17,33 @@ function doAnimate() {
     Derfor kører animationen ikke mere end to gange!
 }*/
 
-$("#button").on("click", function() {
-	$("#graph").slideToggle();
+	$("#button").on("click", function() {
+		$("#graph").slideToggle();
+	});
+
+	$(function() {
+		  $('#csvdata').CSVToTable('data.csv' , 
+				    { 
+			   separator: ";",
+		       startLine: 1,
+		       headers: ['Time', 'Pris (DKK)'],
+		       loadingText: "Henter data..."
+		    });
+		});
+	
+	
+
 });
 
-$("#current").load("http://www.nordpoolspot.com/#/nordic/table a[href*='SYS1/Daily/?view=table&curr=DKK']", function( response, status, xhr ) {
-			var msg = "Response code: ";
-		    $("#error").html( msg + xhr.status + " " + xhr.statusText );
-		}).find("div[ng-bind*='value']").getValue(); 
 
-$("#datatable").load("http://www.nordpoolspot.com/Market-data1/Elspot/Area-Prices/DK/Hourly/?view=table #datatable");
-
-//$("#current").load("http://www.nordpoolspot.com/#/nordic/table a[href*='SYS1/Daily/?view=table&curr=DKK']").find("div[ng-bind*='value']").getValue();
-
-});
-
-//
 //function buttonclicked() {
-//    // What (style) actions are taken when the button is clicked on
-//    var image = document.getElementById("button");
-//
-//    if (image.style.float != "right") { //To avoid multiple animations...
-//        $("#button").animate({/*marginTop:"+=70px"*/},1000, function() {
-//           /* $("#top").fadeIn(300); */
-//        });
-//        
-//    }
+////What (style) actions are taken when the button is clicked on
+//var image = document.getElementById("button");
+
+//if (image.style.float != "right") { //To avoid multiple animations...
+//$("#button").animate({/*marginTop:"+=70px"*/},1000, function() {
+///* $("#top").fadeIn(300); */
+//});
+
+//}
 //}

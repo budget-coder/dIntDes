@@ -97,12 +97,12 @@ div#wrapper {
     width:900px;
 }
 
-img,table {
+img,#top {
     display:block;
     margin-top:10%;
 }
 
-td {
+.tdwide {
     padding-left:10px;
     width: 300px; /* For some reason, this works in centering the table...*/
     color:#0b0bf1;
@@ -122,7 +122,7 @@ span.link {
     cursor:pointer;
 }
 
-.hoverClick:hover {
+/* .hoverClick:hover {
     opacity: 0.8;
     cursor:pointer;
 }
@@ -130,4 +130,4 @@ span.link {
 .hoverHelp:hover {
     opacity: 0.8;
     cursor:help;
-}
+} */
