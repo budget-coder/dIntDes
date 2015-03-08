@@ -1,49 +1,38 @@
 $(document).ready(function () {
-	/*    $("#graph").hide();
-});
-
-$(function () {
-    $("#button").click(clickHandler);
-});
-
-function clickHandler() {
-    $("#button").addClass("buttonAnimate");
-    doAnimate();
-    return false;    
-}
-
-function doAnimate() {
-    $("#graph").delay(900).slideDown(800); // Bemærk, at slideDown kun virker, når elementet er skjult.
-    Derfor kører animationen ikke mere end to gange!
-}*/
-
 	$("#button").on("click", function() {
 		$("#graph").slideToggle();
 	});
-
-	$(function() {
-		  $('#csvdata').CSVToTable('data.csv' , 
-				    { 
-			   separator: ";",
-		       startLine: 1,
-		       headers: ['Time', 'Pris (DKK)'],
-		       loadingText: "Henter data..."
-		    });
-		});
 	
+	/*$('#csvdata').CSVToTable('data.csv' , 
+			{ 
+		separator: ";",
+		startLine: 1,
+		headers: ['Time', 'Pris (DKK)'],
+		loadingText: "Henter data..."
+			});*/
+	//var priceSpan = document.createElement("SPAN").append(pricePerKWH[hours]);
+	$("#currentPrice").append(pricePerKWH[hours]);
+	//$("#csvdata").append(priceSpan);
 	
-
+	var priceStatus = "Prisen er " + goodPrice(pricePerKWH[hours]);
+	$("#priceStatus").append(priceStatus);
+	
+	var priceString = "Pris for el pt: "+pricePerKWH[hours]+" kWh (normalt)";
+	$("#pricing").append(priceString);
 });
 
+var hours = new Date().getHours();
 
-//function buttonclicked() {
-////What (style) actions are taken when the button is clicked on
-//var image = document.getElementById("button");
+var pricePerKWH = [194.13, 189.76,187.44,188.19,191.83,194.27,202.61,211.85,214.80,214.37,215.39,214.30,211.93,210.30,210.09,212.85,216.83,222.17,221.44,215.94,212.08,207.41,204.55,196.47];
+var avgPricePerKWH = 211.08;
 
-//if (image.style.float != "right") { //To avoid multiple animations...
-//$("#button").animate({/*marginTop:"+=70px"*/},1000, function() {
-///* $("#top").fadeIn(300); */
-//});
-
-//}
-//}
+function goodPrice(price) {
+	if (price>=avgPricePerKWH) {
+		$("#priceStatus").addClass("highPrice");
+		return "høj";
+	}
+	else {
+		$("#priceStatus").addClass("lowPrice")
+		return "lav";
+	}
+}

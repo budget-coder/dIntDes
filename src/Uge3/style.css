@@ -71,6 +71,14 @@ body {
     }
 } */
 
+.lowPrice {
+	color:green;
+}
+
+.highPrice {
+	color:red;
+}
+
 .centerText {   
     text-align:center;
 }
