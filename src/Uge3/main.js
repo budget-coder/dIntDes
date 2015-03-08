@@ -14,10 +14,7 @@ $(document).ready(function () {
 	$("#currentPrice").append(pricePerKWH[hours]);
 	//$("#csvdata").append(priceSpan);
 	
-	var priceStatus = "Prisen er " + goodPrice(pricePerKWH[hours]);
-	$("#priceStatus").append(priceStatus);
-	
-	var priceString = "Pris for el pt: "+pricePerKWH[hours]+" kWh (normalt)";
+	var priceString = "Pris: "+pricePerKWH[hours]+" kWh ("+goodPrice(pricePerKWH[hours])+")";
 	$("#pricing").append(priceString);
 });
 
@@ -28,11 +25,11 @@ var avgPricePerKWH = 211.08;
 
 function goodPrice(price) {
 	if (price>=avgPricePerKWH) {
-		$("#priceStatus").addClass("highPrice");
+		$("#pricing").addClass("highPrice");
 		return "høj";
 	}
 	else {
-		$("#priceStatus").addClass("lowPrice")
+		$("#pricing").addClass("lowPrice")
 		return "lav";
 	}
 }
