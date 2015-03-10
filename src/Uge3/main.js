@@ -197,7 +197,7 @@ function ratePerMin() {
 }
 
 function convertRatePerMin() { //I øre
-    return ratePerMin()*pricePerMWH[thisHour()]/10;
+    return ratePerMin()*60*pricePerMWH[thisHour()]/1000;
 }
 
 function convertCurrentUsage() { 
