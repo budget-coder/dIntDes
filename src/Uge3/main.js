@@ -15,17 +15,17 @@ $(document).ready(function () {
 	$("#limit").append("Din grænse: "+limit+" kWh.");
 	$("#prognosis").append("Prognose: "+prognosis().toFixed(2)+" kWh.");
 	$("#yesterUsage").append("Forbrug for i går: "+usageYesterday().toFixed(2)+" kWh.");
-	
+
 	// Smiley!
-	
+
 	var goodColor = {
 			fillStyle: function() {
-				if (usageCurrent() > limit) {return "red"}
-				else if (prognosis() > limit) {return "yellow"}
-				else {return "#44ff44"}
+				if (usageCurrent() > limit) {return "red";}
+				else if (prognosis() > limit) {return "yellow";}
+				else {return "#44ff44";}
 			}
 	}
-	
+
 	// Set up!
 	var a_canvas = document.getElementById("smiley");
 	var context = a_canvas.getContext("2d");
@@ -53,15 +53,38 @@ $(document).ready(function () {
 	context.fill();
 
 	// Draw the mouth
-	context.beginPath();
-	context.arc(145, 85, 50, (7/8)*Math.PI, (17/8)*Math.PI, true);
-	context.closePath();
-	context.fill();
-	context.beginPath();
-	context.arc(145, 85, 46, (9/8)*Math.PI, (15/8)*Math.PI, true);
-	context.closePath();
-	context.fillStyle = goodColor.fillStyle();
-	context.fill();
+	drawMouth();
+
+	function drawMouth() {
+		if (usageCurrent() > limit) {
+			context.beginPath();
+			context.arc(145, 155, 50, (14/8)*Math.PI, (10/8)*Math.PI, true);
+			context.closePath();
+			context.fill();
+			context.beginPath();
+			context.arc(145, 155, 46, (14/8)*Math.PI, (10/8)*Math.PI, true);
+			context.closePath();
+			context.fillStyle = goodColor.fillStyle();
+			context.fill();
+		}
+		else if (prognosis() > limit) {
+			context.beginPath();
+			context.lineTo();
+			context.lineWidth(5);
+			context.stroke();
+		}
+		else {
+			context.beginPath();
+			context.arc(145, 85, 50, (7/8)*Math.PI, (17/8)*Math.PI, true);
+			context.closePath();
+			context.fill();
+			context.beginPath();
+			context.arc(145, 85, 46, (7/8)*Math.PI, (17/8)*Math.PI, true);
+			context.closePath();
+			context.fillStyle = goodColor.fillStyle();
+			context.fill();
+		}
+	}
 
 });
 
