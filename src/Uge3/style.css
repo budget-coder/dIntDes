@@ -13,64 +13,6 @@ body {
 	display: none
 }
 
-/* LORT VIRKER IKKE
-.buttonAnimate {
-    -moz-animation-name: BUTTON;
-    -moz-animation-duration: 0.5s;
-    -moz-animation-iteration-count: 1;
-    
-    -webkit-animation-name: BUTTON;
-    -webkit-animation-duration: 0.5s;
-    -webkit-animation-iteration-count: 1;
-} */
-/*
-@-moz-keyframes BUTTON { /* For Firefox */
-    /* LORTET VIRKER IKKE
-    0% {
-        // top: 72px;
-        opacity:0;
-    }
-    40% {
-        // top: 57px;
-        opacity:0.5;
-    }
-    70% {
-        // top: 56px;
-        opacity:0.9;
-    }
-
-    80% {                
-        // top: 112px;
-        opacity:0.5;
-    }
-
-    100% {
-        // top: 72px;
-        opacity:0;
-    }
-} */
-/*
-@-webkit-keyframes BUTTON { /* For Chrome */
-    /* LORTET VIRKER IKKE
-    0% {
-        top: 72px;
-    }
-    40% {
-        top: 57px;
-    }
-    70% {
-        top: 56px;
-    }
-
-    80% {                
-        top: 112px;
-    }
-
-    100% {
-        top: 72px;
-    }
-} */
-
 .lowPrice {
 	color:green;
 }
@@ -130,10 +72,11 @@ span.link {
     cursor:pointer;
 }
 
-/* .hoverClick:hover {
+ .hoverClick:hover {
     opacity: 0.8;
     cursor:pointer;
 }
+/*
 
 .hoverHelp:hover {
     opacity: 0.8;
