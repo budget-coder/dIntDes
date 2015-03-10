@@ -16,7 +16,7 @@ $(document).ready(function () {
         $("#currentUsage").on("click", function() {
            var foo = document.getElementById("currentUsage").innerHTML;
            if (foo.search("kWh") > -1) {
-               $("#currentUsage").empty().append("Forbrug indtil videre: " +convertCurrentUsage().toFixed(2) + " kr"); 
+               $("#currentUsage").empty().append("I forhold til grænse: " +convertCurrentUsage().toFixed(2) + " %"); 
            }
            else {
                $("#currentUsage").empty().append("Forbrug indtil videre: "+usageCurrent().toFixed(2)+" kWh."); 
@@ -196,10 +196,10 @@ function ratePerMin() {
 }
 
 function convertRatePerMin() { //I øre
-    return ratePerMin()*pricePerMWH[thisHour()]/100;
+    return ratePerMin()*pricePerMWH[thisHour()]/10;
 }
 
 function convertCurrentUsage() { 
-    var foo = document.getElementById("limit").innerHTML.match(/\d+/);
+    var foo = document.getElementById("limit").innerHTML.match(/\d+/); //Finds first set of numbers
     return usageCurrent()/foo*100;
 }
