@@ -1,3 +1,5 @@
+var limit = 8.22;
+
 $(document).ready(function () {
 	$("#button").on("click", function() {
 		$("#graph").slideToggle();
@@ -32,7 +34,6 @@ $(document).ready(function () {
 	$("#currentUsage").append(currentUsage);
 	var currentUsePerMin = "Du bruger nu: "+ratePerMin().toFixed(2)+" kWh/10 min.";
 	$("#ratePerMin").append(currentUsePerMin);
-	var limit = 8.22;
 	$("#limit").append("Din grænse: "+limit+" kWh.");
 	$("#prognosis").append("Prognose: "+prognosis().toFixed(2)+" kWh.");
 	$("#yesterUsage").append("Forbrug for i går: "+usageYesterday().toFixed(2)+" kWh.");
@@ -200,6 +201,6 @@ function convertRatePerMin() { //I øre
 }
 
 function convertCurrentUsage() { 
-    var foo = document.getElementById("limit").innerHTML.match(/\d+/); //Finds first set of numbers
-    return usageCurrent()/foo*100;
+    //var foo = document.getElementById("limit").innerHTML.match(/\d+/); //Finds first set of numbers
+    return usageCurrent()/limit*100;
 }
