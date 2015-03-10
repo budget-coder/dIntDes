@@ -7,22 +7,21 @@ $(document).ready(function () {
 	$("#pricing").append(priceString);
 
 
-	var currentUsage = "Forbrug indtil videre: "+usageCurrent()+" kWh.";
+	var currentUsage = "Forbrug indtil videre: "+usageCurrent().toFixed(2)+" kWh.";
 	$("#currentUsage").append(currentUsage);
 	var currentUsePerMin = "Du bruger nu: "+ratePerMin().toFixed(2)+" kWh/10 min";
 	$("#ratePerMin").append(currentUsePerMin);
 	var limit = 8.22;
 	$("#limit").append("Din grænse: "+limit+" kWh.");
-	var prognosis = (usageCurrent()+leftMinutes()*ratePerMin()/10);
-	$("#prognosis").append("Prognose: "+prognosis+" kWh.")
-	$("#yesterUsage").append("Forbrug for i går: "+usageYesterday().toFixed(2)+" kWh.")
+	$("#prognosis").append("Prognose: "+prognosis().toFixed(2)+" kWh.");
+	$("#yesterUsage").append("Forbrug for i går: "+usageYesterday().toFixed(2)+" kWh.");
 	
 	// Smiley!
 	
-	var smileySetup = {
+	var goodColor = {
 			fillStyle: function() {
 				if (usageCurrent() > limit) {return "red"}
-				else if (prognosis > limit) {return "yellow"}
+				else if (prognosis() > limit) {return "yellow"}
 				else {return "#44ff44"}
 			}
 	}
@@ -32,9 +31,9 @@ $(document).ready(function () {
 	var context = a_canvas.getContext("2d");
 
 	// Draw the face
-	context.fillStyle = smileySetup.fillStyle();
+	context.fillStyle = goodColor.fillStyle();
 	context.beginPath();
-	context.arc(95, 85, 80, 0, 2*Math.PI);
+	context.arc(145, 75, 80, 0, 2*Math.PI);
 	context.closePath();
 	context.fill();
 	context.lineWidth = 2;
@@ -43,25 +42,25 @@ $(document).ready(function () {
 
 	// Draw the left eye
 	context.beginPath();
-	context.arc(75, 75, 10, 0, 2*Math.PI);
+	context.arc(120, 55, 10, 0, 2*Math.PI);
 	context.closePath();
 	context.fill();
 
 	// Draw the right eye
 	context.beginPath();
-	context.arc(114, 75, 10, 0, 2*Math.PI);
+	context.arc(169, 55, 10, 0, 2*Math.PI);
 	context.closePath();
 	context.fill();
 
 	// Draw the mouth
 	context.beginPath();
-	context.arc(95, 90, 52, (7/8)*Math.PI, (17/8)*Math.PI, true);
+	context.arc(145, 85, 50, (7/8)*Math.PI, (17/8)*Math.PI, true);
 	context.closePath();
 	context.fill();
 	context.beginPath();
-	context.arc(95, 90, 48, (9/8)*Math.PI, (15/8)*Math.PI, true);
+	context.arc(145, 85, 46, (9/8)*Math.PI, (15/8)*Math.PI, true);
 	context.closePath();
-	context.fillStyle = smileySetup.fillStyle();
+	context.fillStyle = goodColor.fillStyle();
 	context.fill();
 
 });
@@ -69,7 +68,7 @@ $(document).ready(function () {
 function thisMinute() {return new Date().getMinutes();};
 function thisHour() { return new Date().getHours();};
 function thisDay() {return new Date().getDay();};
-function leftMinutes() {1440-60*thisHour()-thisMinute()-1};
+function leftMinutes() {return 1440-60*thisHour()-thisMinute()-1};
 
 var pricePerMWH = [194.13, 189.76,187.44,188.19,191.83,194.27,202.61,211.85,214.80,214.37,215.39,214.30,211.93,210.30,210.09,212.85,216.83,222.17,221.44,215.94,212.08,207.41,204.55,196.47];
 var avgPricePerMWH = 211.08;
@@ -91,6 +90,12 @@ function goodPrice(price) {
 	}
 }
 
+function prognosis() {
+	var present = usageCurrent();
+	var future = leftMinutes()*(ratePerMin()/10);
+	return present + future;
+}
+
 function usageCurrent() {
 	var usage = 0;
 	// hvilken dag skal vi kigge på...
@@ -108,8 +113,8 @@ function usageCurrent() {
 		usage += (usageDay[i]*dagligAvgForbrug)/(avgForbrug*24);
 	}
 	// plusser forbruget per minute for denne time indtil videre
-	usage = usage + thisMinute()*usageDay[thisHour()]/(60*24*avgForbrug);
-	return usage.toFixed(2);
+	usage = usage + thisMinute()*usageDay[thisHour()]*dagligAvgForbrug/(60*24*avgForbrug);
+	return usage;
 }
 
 function usageYesterday() {
@@ -140,6 +145,6 @@ function ratePerMin() {
 	else {
 		var usageDay = forbrugDag3;
 	}
-	var usage = thisMinute()*usageDay[thisHour()]/(6*24*avgForbrug);
+	var usage = usageDay[thisHour()]*dagligAvgForbrug/(6*24*avgForbrug);
 	return usage;
 }
