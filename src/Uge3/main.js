@@ -15,7 +15,7 @@ $(document).ready(function () {
 	$("#limit").append("Din grænse: "+limit+" kWh.");
 	$("#prognosis").append("Prognose: "+prognosis().toFixed(2)+" kWh.");
 	$("#yesterUsage").append("Forbrug for i går: "+usageYesterday().toFixed(2)+" kWh.");
-
+	
 	// Smiley!
 
 	var goodColor = {
