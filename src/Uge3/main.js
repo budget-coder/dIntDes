@@ -24,7 +24,7 @@ $(document).ready(function () {
 				else if (prognosis() > limit) {return "yellow";}
 				else {return "#44ff44";}
 			}
-	}
+	};
 
 	// Set up!
 	var a_canvas = document.getElementById("smiley");
@@ -69,8 +69,10 @@ $(document).ready(function () {
 		}
 		else if (prognosis() > limit) {
 			context.beginPath();
-			context.lineTo();
-			context.lineWidth(5);
+			context.moveTo(120,120);
+			context.lineTo(169,120);
+			context.lineWidth = 5;
+			context.strokeStyle = 'black';
 			context.stroke();
 		}
 		else {
@@ -91,7 +93,7 @@ $(document).ready(function () {
 function thisMinute() {return new Date().getMinutes();};
 function thisHour() { return new Date().getHours();};
 function thisDay() {return new Date().getDay();};
-function leftMinutes() {return 1440-60*thisHour()-thisMinute()-1};
+function leftMinutes() {return 1440-60*thisHour()-thisMinute()-1;};
 
 var pricePerMWH = [194.13, 189.76,187.44,188.19,191.83,194.27,202.61,211.85,214.80,214.37,215.39,214.30,211.93,210.30,210.09,212.85,216.83,222.17,221.44,215.94,212.08,207.41,204.55,196.47];
 var avgPricePerMWH = 211.08;
@@ -108,7 +110,7 @@ function goodPrice(price) {
 		return "høj";
 	}
 	else {
-		$("#pricing").addClass("lowPrice")
+		$("#pricing").addClass("lowPrice");
 		return "lav";
 	}
 }
