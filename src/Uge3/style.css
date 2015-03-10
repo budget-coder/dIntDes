@@ -117,8 +117,7 @@ img,#top {
     color:#0b0bf1;
 }
 
-td pre {
-    
+td pre { 
     border-radius: 3px;
     font-family: inherit;
     padding: 3px;
@@ -131,7 +130,7 @@ span.link {
     cursor:pointer;
 }
 
-/* .hoverClick:hover {
+ .hoverClick:hover {
     opacity: 0.8;
     cursor:pointer;
 }
@@ -139,4 +138,4 @@ span.link {
 .hoverHelp:hover {
     opacity: 0.8;
     cursor:help;
-} */
+} 

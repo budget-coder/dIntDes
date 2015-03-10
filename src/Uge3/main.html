@@ -15,29 +15,28 @@
                 <tr>
                     <td class="alignTextRight tdwide">
                         <pre>
-                            <span id="currentUsage" class="values"></span>
-                            <span id="limit" class="values"></span>
-                            <span id="prognosis" class="values"></span>
-                            <span id="yesterUsage" class="values"></span>
+                            <span id="currentUsage" class="hoverClick"></span>
+                            <span id="limit"></span>
+                            <span id="prognosis" class="hoverHelp" title="En forudsigelse af, hvad du har brugt, når dagen er omme.
+Baseret på forbruget pt. til højre for smileyen."></span>
+                            <span id="yesterUsage" class="hoverClick"></span>
                         </pre> 
                     </td>
                     <td class="tdwide"> 
-                        <canvas id="smiley" class="tdwide divCenter"></canvas>
+                        <canvas id="smiley" class="tdwide divCenter" height="180"></canvas>
                     </td>
                     <td class="alignTextLeft tdwide">
                         <pre>
                              <!-- Sammenlign nuværende forbrug med grænse. Der burde være et spørgsmålstegn på "status",
                                               så man med musen kan få en hjælpeboks med forklaring af "status".-->
-                      		<span id="ratePerMin" class="values"></span>
-                            <span id="pricing" class="values"></span><!-- Ses kun, hvis man har angivet, at man har sådan en aftale-->
+                      		<span id="ratePerMin" class="hoverClick"></span>
+                            <span id="pricing"></span><!-- Ses kun, hvis man har angivet, at man har sådan en aftale-->
                         </pre>
                     </td>
                 </tr>
             </table>
         </div>
-		
-		<div id="csvdata"></div>
-
+        
         <br/> <br/> <br/>
         <img class="divCenter hoverClick" id="button" src="media/button.png" alt="button"/> <!-- http://dabuttonfactory.com/ -->
         <br/>
