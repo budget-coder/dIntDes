@@ -2,6 +2,27 @@ $(document).ready(function () {
 	$("#button").on("click", function() {
 		$("#graph").slideToggle();
 	});
+        
+        $("#ratePerMin").on("click", function() {
+            var foo = document.getElementById("ratePerMin").innerHTML;
+            if (foo.search("bruger") > -1) { // Only now was it clicked 
+               $("#ratePerMin").empty().append("Du betaler nu: " +convertRatePerMin().toFixed(2) + " øre/10 min.");
+            }
+            else {
+               $("#ratePerMin").empty().append("Du bruger nu: "+ratePerMin().toFixed(2)+" kWh/10 min.");
+           }
+        });
+        
+        $("#currentUsage").on("click", function() {
+           var foo = document.getElementById("currentUsage").innerHTML;
+           if (foo.search("kWh") > -1) {
+               $("#currentUsage").empty().append("Forbrug indtil videre: " +convertCurrentUsage().toFixed(2) + " kr"); 
+           }
+           else {
+               $("#currentUsage").empty().append("Forbrug indtil videre: "+usageCurrent().toFixed(2)+" kWh."); 
+           }
+            
+        });
 
 	var priceString = "Pris: "+(pricePerMWH[thisHour()]/1000).toFixed(3)+" kr/kWh ("+goodPrice(pricePerMWH[thisHour()])+")";
 	$("#pricing").append(priceString);
@@ -9,13 +30,13 @@ $(document).ready(function () {
 
 	var currentUsage = "Forbrug indtil videre: "+usageCurrent().toFixed(2)+" kWh.";
 	$("#currentUsage").append(currentUsage);
-	var currentUsePerMin = "Du bruger nu: "+ratePerMin().toFixed(2)+" kWh/10 min";
+	var currentUsePerMin = "Du bruger nu: "+ratePerMin().toFixed(2)+" kWh/10 min.";
 	$("#ratePerMin").append(currentUsePerMin);
 	var limit = 8.22;
 	$("#limit").append("Din grænse: "+limit+" kWh.");
 	$("#prognosis").append("Prognose: "+prognosis().toFixed(2)+" kWh.");
 	$("#yesterUsage").append("Forbrug for i går: "+usageYesterday().toFixed(2)+" kWh.");
-	
+
 	// Smiley!
 
 	var goodColor = {
@@ -124,10 +145,10 @@ function prognosis() {
 function usageCurrent() {
 	var usage = 0;
 	// hvilken dag skal vi kigge på...
-	if (thisDay()%3 == 0) {
+	if (thisDay()%3 === 0) {
 		var usageDay = forbrugDag1;
 	}
-	else if (thisDay()%3 == 1) {
+	else if (thisDay()%3 === 1) {
 		var usageDay = forbrugDag2;
 	}
 	else {
@@ -144,10 +165,10 @@ function usageCurrent() {
 
 function usageYesterday() {
 	var usage = 0;
-	if (thisDay()%3 == 0) {
+	if (thisDay()%3 === 0) {
 		var usageDay = forbrugDag3;
 	}
-	else if (thisDay()%3 == 1) {
+	else if (thisDay()%3 === 1) {
 		var usageDay = forbrugDag1;
 	}
 	else {
@@ -161,10 +182,10 @@ function usageYesterday() {
 
 function ratePerMin() {
 	// hvilken dag skal vi kigge på...
-	if (thisDay()%3 == 0) {
+	if (thisDay()%3 === 0) {
 		var usageDay = forbrugDag1;
 	}
-	else if (thisDay()%3 == 1) {
+	else if (thisDay()%3 === 1) {
 		var usageDay = forbrugDag2;
 	}
 	else {
@@ -172,4 +193,13 @@ function ratePerMin() {
 	}
 	var usage = usageDay[thisHour()]*dagligAvgForbrug/(6*24*avgForbrug);
 	return usage;
+}
+
+function convertRatePerMin() { //I øre
+    return ratePerMin()*pricePerMWH[thisHour()]/100;
+}
+
+function convertCurrentUsage() { 
+    var foo = document.getElementById("limit").innerHTML.match(/\d+/);
+    return usageCurrent()/foo*100;
 }
