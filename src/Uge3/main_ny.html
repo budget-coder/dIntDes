@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ataraxia: Dit elforbrug</title>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <script src="http://code.jquery.com/jquery-1.9.0.js"></script> <!--JavaScript bibliotek-->
+        <script src="https://jquerycsvtotable.googlecode.com/files/jquery.csvToTable.js"></script>
+        <script src="main.js"></script> <!-- Vores js-fil -->
+    </head>
+    <body>
+        <div id="wrapper">
+            <table id="top">
+                <tr>
+                    <td class="alignTextRight tdwide">
+                        <pre>
+                            <span id="currentUsage" class="hoverClick"></span>
+                            <span id="limit"></span>
+                            <span id="prognosis" class="hoverHelp" title="En forudsigelse af, hvad du har brugt, når dagen er omme.
+Baseret på forbruget pt. til højre for smileyen."></span>
+                            <span id="yesterUsage" class="hoverClick"></span>
+                        </pre> 
+                    </td>
+                    <td class="tdwide"> 
+                        <canvas id="smiley" class="tdwide divCenter" height="180"></canvas>
+                    </td>
+                    <td class="alignTextLeft tdwide">
+                        <pre>
+                             <!-- Sammenlign nuværende forbrug med grænse. Der burde være et spørgsmålstegn på "status",
+                                              så man med musen kan få en hjælpeboks med forklaring af "status".-->
+                            <span id="dagForbrug"></span>
+                            <span id="ratePerMin" class="hoverClick"></span>
+                            <span id="pricing"></span><!-- Ses kun, hvis man har angivet, at man har sådan en aftale-->
+                        </pre>
+                    </td>
+                </tr>
+            </table>
+            Elkedel: <input type="checkbox" id="chk" onclick="chkState(this)">
+        </div>
+
+        <br/> <br/> <br/>
+        <img class="divCenter hoverClick" id="button" src="media/button.png" alt="button"/> <!-- http://dabuttonfactory.com/ -->
+        <br/>
+        <img class="divCenter" id="graph" src="media/graph.png" alt="graph"/>
+    </body>
+</html>
