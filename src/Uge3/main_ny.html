@@ -15,29 +15,29 @@
                 <tr>
                     <td class="alignTextRight tdwide">
                         <pre>
-                            <text id="currentUsage"></text>
-                            <text id="ratePerMin"></text>
-                            <text id="limit"></text>
-                            <text id="prognosis"></text>
-                            <text id="yesterUsage"></text>
+                            <span id="currentUsage" class="hoverClick"></span>
+                            <span id="limit"></span>
+                            <span id="prognosis" class="hoverHelp" title="En forudsigelse af, hvad du har brugt, når dagen er omme.
+Baseret på forbruget pt. til højre for smileyen."></span>
+                            <span id="yesterUsage" class="hoverClick"></span>
                         </pre> 
                     </td>
-                    <td> <!-- <img class="divCenter tdwide" id="smiley" src="media/smiley.png" alt="Smiley."> --> 
-                    	<canvas id="smiley" class="tdwide divCenter">
+                    <td class="tdwide"> 
+                        <canvas id="smiley" class="tdwide divCenter" height="180"></canvas>
                     </td>
                     <td class="alignTextLeft tdwide">
                         <pre>
                              <!-- Sammenlign nuværende forbrug med grænse. Der burde være et spørgsmålstegn på "status",
                                               så man med musen kan få en hjælpeboks med forklaring af "status".-->
-                            <text id="pricing"></text><!-- Ses kun, hvis man har angivet, at man har sådan en aftale
-                                                                   "Normalt" fortæller, om brugeren skal bruge en masse strøm nu eller ej.-->
+                            <span id="dagForbrug"></span>
+                            <span id="ratePerMin" class="hoverClick"></span>
+                            <span id="pricing"></span><!-- Ses kun, hvis man har angivet, at man har sådan en aftale-->
                         </pre>
                     </td>
                 </tr>
             </table>
+            Elkedel: <input type="checkbox" id="chk" onclick="chkState(this)">
         </div>
-		
-		<div id="csvdata"></div>
 
         <br/> <br/> <br/>
         <img class="divCenter hoverClick" id="button" src="media/button.png" alt="button"/> <!-- http://dabuttonfactory.com/ -->

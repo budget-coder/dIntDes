@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ataraxia: Setup</title>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="http://cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <script src="http://code.jquery.com/jquery-1.9.0.js"></script> <!--JavaScript bibliotek-->
+        <script src="https://jquerycsvtotable.googlecode.com/files/jquery.csvToTable.js"></script>
+        <script src="main.js"></script> <!-- Vores js-fil -->
+    </head>
+    <body>
+        <div id="wrapper">
+            <p class="centerText title">Hejsa, og velkommen til opsætningssiden!</p>
+            
+            <p>Først vil vi bede dig udfylde nedenstående felter.
+                Det vil være til gavn for dig, hvis du kan være så præcis med tallene som muligt. (Benyt
+                <span style="font-weight: bold">punktum </span>og <span style="font-weight: bold">ikke komma</span>
+                ved decimaltal.) <br/>
+                Er du i tvivl om noget, kan du føre musen over det, og en lille infoboks vil dukke frem.
+            <table>
+                <tr>
+                    <td class="alignTextLeft">
+                        <span class="textColor hoverHelp" title="Se din forrige elregning. Hvis du betaler hvert kvartal, dividerer du med 3 og dernæst med 30.">
+                    Dit daglige forbrug*:</span>
+                    </td>
+                    <td><input id="dagForbrugCookie" class="alignTextRight inputWidth" type="text"> <span class="textColor">kWh.</span> </td>
+                </tr>
+                <tr>
+                    <td class="alignTextLeft"><span class="textColor hoverHelp" title="Dit grænse for, hvad du vil bruge af strøm om dagen. Er du i tvivl, kan du lade de 8.22 kWh stå.">
+                    Din personlige grænse:</span>
+                    </td>
+                    <td><input id="limitCookie" class="alignTextRight inputWidth" type="text" value="8.22" > <span class="textColor">kWh.</span> </td>
+                </tr>
+                <tr>
+                    <td class="alignTextLeft">
+                        <span class="textColor hoverHelp" title="Det skulle gerne stå på din seneste elregning. Den ligger normalt på 30-36 øre / kWh.">
+                            Hvad betaler du pr. kWh?</span>
+                    </td>
+                    <td><input id="avgPriceCookie" class="alignTextRight inputWidth" type="text"> <span class="textColor">kr. / kWh.</span></td>
+                </tr>
+            </table>
+            <br/>
+            <span class="textColor"> </span><input class="textColor" type="button" onclick="saveSetup()" value="Opdater!"> <br/> 
+            <span class="textColor">*En midlertidig værdi, der efter én dag automatisk erstattes af dit rigtige forbrug fra din elmåler. <br/>
+            Den bruges i starten til at give siden funktionalitet.</span>
+        </div>
+
+
+    </body>
+</html>

@@ -1,5 +1,10 @@
 var limit = 8.22;
 
+//TIL MAIN_NY
+var priceNew = getCookie("avgPrice");
+var limitNew = getCookie("limit");
+var regexFloat = /[+-]?\d+\.\d+/g;//Finds first set of floats
+
 $(document).ready(function () {
     $("#button").on("click", function () {
         $("#graph").slideToggle();
@@ -7,11 +12,14 @@ $(document).ready(function () {
 
     $("#ratePerMin").on("click", function () {
         var foo = document.getElementById("ratePerMin").innerHTML;
+        var fooFloat = parseFloat(foo.match(regexFloat));
         if (foo.search("bruger") > -1) { // Only now was it clicked 
-            $("#ratePerMin").empty().append("Du betaler nu: " + (convertUsage(ratePerMin())*100).toFixed(2) + " øre/10 min.");
+//            $("#ratePerMin").empty().append("Du betaler nu: " + (convertUsage(ratePerMin())*100).toFixed(2) + " øre/10 min.");
+            $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat*priceNew*100).toFixed(2) + " øre/10 min.");
         }
         else {
-            $("#ratePerMin").empty().append("Du bruger nu: " + ratePerMin().toFixed(2) + " kWh/10 min.");
+//           $("#ratePerMin").empty().append("Du bruger nu: " + ratePerMin().toFixed(2) + " kWh/10 min.");
+            $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat/(priceNew*100)).toFixed(2) + " kWh/10 min.");
         }
     });
 
@@ -25,37 +33,45 @@ $(document).ready(function () {
         }
 
     });
-    
+
     $("#yesterUsage").on("click", function () {
         var foo = document.getElementById("yesterUsage").innerHTML;
         if (foo.search("kWh") > -1) {
-            $("#yesterUsage").empty().append("Forbrug for i går: " + convertUsage(usageYesterday()).toFixed(2) + " kr.");
+//            $("#yesterUsage").empty().append("Forbrug for i går: " + convertUsage(usageYesterday()).toFixed(2) + " kr.");
         }
         else {
-            $("#yesterUsage").empty().append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
+//            $("#yesterUsage").empty().append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
         }
 
     });
 
-    var priceString = "Pris: " + (pricePerMWH[thisHour()] / 1000).toFixed(3) + " kr/kWh (" + goodPrice(pricePerMWH[thisHour()]) + ")";
-    $("#pricing").append(priceString);
+//    var priceString = "Pris: " + (pricePerMWH[thisHour()] / 1000).toFixed(3) + " kr/kWh (" + goodPrice(pricePerMWH[thisHour()]) + ")";
+//    $("#pricing").append(priceString);
 
+    $("#pricing").append("Pris: " + getCookie("avgPrice") + " kr/kWh");
 
     var currentUsage = "Forbrug indtil videre: " + usageCurrent().toFixed(2) + " kWh.";
     $("#currentUsage").append(currentUsage);
     var currentUsePerMin = "Du bruger nu: " + ratePerMin().toFixed(2) + " kWh/10 min.";
     $("#ratePerMin").append(currentUsePerMin);
-    $("#limit").append("Din grænse: " + limit + " kWh.");
+//    $("#limit").append("Din grænse: " + limit + " kWh.");
+    $("#limit").append("Din grænse: " + limitNew + " kWh.");
     $("#prognosis").append("Prognose: " + prognosis().toFixed(2) + " kWh.");
-    $("#yesterUsage").append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
+//    $("#yesterUsage").append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
+    $("#yesterUsage").append("Forbrug for i går: ---- kWh.");
+    
+    //////////////NY TILFØJELSE////////////
+    $("#dagForbrug").append("Dit daglige forbrug: " + getCookie("dagForbrug") + " kWh.");
 
     // Smiley!
     var goodColor = {
         fillStyle: function () {
-            if (usageCurrent() > limit) {
+//            if (usageCurrent() > limit) {
+            if (usageCurrent() > limitNew) {
                 return "red";
             }
-            else if (prognosis() > limit) {
+//            else if (prognosis() > limit) {
+            else if (prognosis() > limitNew) {
                 return "yellow";
             }
             else {
@@ -94,7 +110,8 @@ $(document).ready(function () {
     drawMouth();
 
     function drawMouth() {
-        if (usageCurrent() > limit) { //Sad smiley
+//        if (usageCurrent() > limit) { //Sad smiley
+        if (usageCurrent() > limitNew) { //Sad smiley
             context.beginPath();
             context.arc(145, 170, 50, (14 / 8) * Math.PI, (10 / 8) * Math.PI, true);
             context.closePath();
@@ -105,7 +122,8 @@ $(document).ready(function () {
             context.fillStyle = goodColor.fillStyle();
             context.fill();
         }
-        else if (prognosis() > limit) { //Neutral smiley
+//        else if (prognosis() > limit) { //Neutral smiley
+        else if (prognosis() > limitNew) { //Neutral smiley
             context.beginPath();
             context.moveTo(120, 135);
             context.lineTo(169, 135);
@@ -125,21 +143,73 @@ $(document).ready(function () {
             context.fill();
         }
     }
-
 });
+
+function saveSetup() {
+    var dagForbrugC = document.getElementById("dagForbrugCookie").value;
+    var limitC = document.getElementById("limitCookie").value;
+    var avgPriceC = document.getElementById("avgPriceCookie").value;
+
+    document.cookie = "limit=" + limitC;
+    document.cookie = "avgPrice=" + avgPriceC;
+    document.cookie = "dagForbrug=" + dagForbrugC;
+
+    window.location.assign("main_ny.html"); //Redirect to the main page.
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+        ;
+    }
+    return "";
+}
+
+//////////////NY TILFØJELSE///////////////
+function chkState(checkbox) {
+    var foo = document.getElementById("ratePerMin").innerHTML;
+    var fooFloat = parseFloat(foo.match(regexFloat));
+    if (checkbox.checked) {
+        if (foo.search("bruger") > -1) {
+            $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat + 4.8).toFixed(2) + " kWh/10 min."); 
+        }
+        else {
+            $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat + 4.8*priceNew*100).toFixed(2) + " øre/10 min.");
+        }
+    }
+    else if (foo.search("bruger") > -1) {
+        $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat - 4.8).toFixed(2) + " øre/10 min.");
+    }
+    
+    else {
+        $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat - 4.8*priceNew*100).toFixed(2) + " øre/10 min.");
+    }
+}
 
 function thisMinute() {
     return new Date().getMinutes();
-};
+}
+;
 function thisHour() {
     return new Date().getHours();
-};
+}
+;
 function thisDay() {
     return new Date().getDay();
-};
+}
+;
 function leftMinutes() {
     return 1440 - 60 * thisHour() - thisMinute() - 1;
-};
+}
+;
 
 var pricePerMWH = [194.13, 189.76, 187.44, 188.19, 191.83, 194.27, 202.61, 211.85, 214.80, 214.37, 215.39, 214.30, 211.93, 210.30, 210.09, 212.85, 216.83, 222.17, 221.44, 215.94, 212.08, 207.41, 204.55, 196.47];
 var avgPricePerMWH = 211.08;
@@ -221,7 +291,7 @@ function ratePerMin() {
 }
 
 function convertCurrentUsage() {
-    //var foo = document.getElementById("limit").innerHTML.match(/\d+/); //Finds first set of numbers
+//    var foo = document.getElementById("limit").innerHTML.match(regexFloat); //Finds first set of float numbers
     return usageCurrent() / limit * 100;
 }
 
