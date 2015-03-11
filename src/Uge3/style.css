@@ -11,7 +11,7 @@ body {
 }
 
 #graph {
-	display: none
+    display: none
 }
 
 /* LORT VIRKER IKKE
@@ -26,58 +26,58 @@ body {
 } */
 /*
 @-moz-keyframes BUTTON { /* For Firefox */
-    /* LORTET VIRKER IKKE
-    0% {
-        // top: 72px;
-        opacity:0;
-    }
-    40% {
-        // top: 57px;
-        opacity:0.5;
-    }
-    70% {
-        // top: 56px;
-        opacity:0.9;
-    }
+/* LORTET VIRKER IKKE
+0% {
+    // top: 72px;
+    opacity:0;
+}
+40% {
+    // top: 57px;
+    opacity:0.5;
+}
+70% {
+    // top: 56px;
+    opacity:0.9;
+}
 
-    80% {                
-        // top: 112px;
-        opacity:0.5;
-    }
+80% {                
+    // top: 112px;
+    opacity:0.5;
+}
 
-    100% {
-        // top: 72px;
-        opacity:0;
-    }
+100% {
+    // top: 72px;
+    opacity:0;
+}
 } */
 /*
 @-webkit-keyframes BUTTON { /* For Chrome */
-    /* LORTET VIRKER IKKE
-    0% {
-        top: 72px;
-    }
-    40% {
-        top: 57px;
-    }
-    70% {
-        top: 56px;
-    }
+/* LORTET VIRKER IKKE
+0% {
+    top: 72px;
+}
+40% {
+    top: 57px;
+}
+70% {
+    top: 56px;
+}
 
-    80% {                
-        top: 112px;
-    }
+80% {                
+    top: 112px;
+}
 
-    100% {
-        top: 72px;
-    }
+100% {
+    top: 72px;
+}
 } */
 
 .lowPrice {
-	color:green;
+    color:green;
 }
 
 .highPrice {
-	color:red;
+    color:red;
 }
 
 .centerText {   
@@ -96,9 +96,22 @@ body {
     text-align:right;
 }
 
+.title {
+    font-size: 30px;
+    color: #0b0bf1;
+}
+
+.textColor {
+    color: #0b0bf1;
+}
+
 br {
     display:block;
     margin:5px 0;
+}
+
+p {
+    color: #0b0bf1;
 }
 
 div#wrapper {
@@ -130,12 +143,12 @@ span.link {
     cursor:pointer;
 }
 
- .hoverClick:hover {
-    opacity: 0.8;
+.hoverClick:hover {
+    opacity: 0.7;
     cursor:pointer;
 }
 
 .hoverHelp:hover {
-    opacity: 0.8;
+    opacity: 0.7;
     cursor:help;
 } 
