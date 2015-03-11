@@ -128,6 +128,19 @@ $(document).ready(function () {
 
 });
 
+function saveSetup () {
+    var limitC = document.getElementById("limitCookie").value;
+    var avgPriceC = document.getElementById("avgPriceCookie").value;
+    var avgForbrugC = document.getElementById("avgForbrugCookie").value;
+
+    document.cookie="limit="+limitC;
+    document.cookie="avgPrice="+avgPriceC;
+    document.cookie="avgForbrug="+avgForbrugC;
+    
+    alert(document.cookie); //ET VINDUE POPUP TIL AT TESTE, AT COOKIES SÆTTES RIGTIGT. SLET EFTER TEST.
+    window.location.assign("main.html"); //Redirect to the main page.
+}
+
 function thisMinute() {
     return new Date().getMinutes();
 };

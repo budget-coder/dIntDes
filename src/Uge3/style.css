@@ -105,6 +105,10 @@ body {
     color: #0b0bf1;
 }
 
+.inputWidth {
+    width: 35%;
+}
+
 br {
     display:block;
     margin:5px 0;
