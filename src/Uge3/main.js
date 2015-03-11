@@ -3,6 +3,7 @@ var limit = 8.22;
 //TIL MAIN_NY
 var priceNew = getCookie("avgPrice");
 var limitNew = getCookie("limit");
+var regexFloat = /[+-]?\d+\.\d+/g;//Finds first set of floats
 
 $(document).ready(function () {
     $("#button").on("click", function () {
@@ -11,7 +12,7 @@ $(document).ready(function () {
 
     $("#ratePerMin").on("click", function () {
         var foo = document.getElementById("ratePerMin").innerHTML;
-        var fooFloat = parseFloat(foo.match(/[+-]?\d+\.\d+/g));
+        var fooFloat = parseFloat(foo.match(regexFloat));
         if (foo.search("bruger") > -1) { // Only now was it clicked 
 //            $("#ratePerMin").empty().append("Du betaler nu: " + (convertUsage(ratePerMin())*100).toFixed(2) + " øre/10 min.");
             $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat*priceNew*100).toFixed(2) + " øre/10 min.");
@@ -175,10 +176,10 @@ function getCookie(cname) {
 //////////////NY TILFØJELSE///////////////
 function chkState(checkbox) {
     var foo = document.getElementById("ratePerMin").innerHTML;
-    var fooFloat = parseFloat(foo.match(/[+-]?\d+\.\d+/g));
+    var fooFloat = parseFloat(foo.match(regexFloat));
     if (checkbox.checked) {
         if (foo.search("bruger") > -1) {
-            $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat + 4.8).toFixed(2) + " kWh/10 min."); //Finds first set of numbers
+            $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat + 4.8).toFixed(2) + " kWh/10 min."); 
         }
         else {
             $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat + 4.8*priceNew*100).toFixed(2) + " øre/10 min.");
@@ -290,7 +291,7 @@ function ratePerMin() {
 }
 
 function convertCurrentUsage() {
-//    var foo = document.getElementById("limit").innerHTML.match(/[+-]?\d+\.\d+/g); //Finds first set of float numbers
+//    var foo = document.getElementById("limit").innerHTML.match(regexFloat); //Finds first set of float numbers
     return usageCurrent() / limit * 100;
 }
 
