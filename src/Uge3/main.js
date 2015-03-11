@@ -14,12 +14,12 @@ $(document).ready(function () {
         var foo = document.getElementById("ratePerMin").innerHTML;
         var fooFloat = parseFloat(foo.match(regexFloat));
         if (foo.search("bruger") > -1) { // Only now was it clicked 
-//            $("#ratePerMin").empty().append("Du betaler nu: " + (convertUsage(ratePerMin())*100).toFixed(2) + " øre/10 min.");
-            $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat*priceNew*100).toFixed(2) + " øre/10 min.");
+            $("#ratePerMin").empty().append("Du betaler nu: " + (convertUsage(ratePerMin())*100).toFixed(2) + " øre/10 min.");
+//            $("#ratePerMin").empty().append("Du betaler nu: " + (fooFloat*priceNew*100).toFixed(2) + " øre/10 min.");
         }
         else {
-//           $("#ratePerMin").empty().append("Du bruger nu: " + ratePerMin().toFixed(2) + " kWh/10 min.");
-            $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat/(priceNew*100)).toFixed(2) + " kWh/10 min.");
+           $("#ratePerMin").empty().append("Du bruger nu: " + ratePerMin().toFixed(2) + " kWh/10 min.");
+//            $("#ratePerMin").empty().append("Du bruger nu: " + (fooFloat/(priceNew*100)).toFixed(2) + " kWh/10 min.");
         }
     });
 
@@ -37,10 +37,10 @@ $(document).ready(function () {
     $("#yesterUsage").on("click", function () {
         var foo = document.getElementById("yesterUsage").innerHTML;
         if (foo.search("kWh") > -1) {
-//            $("#yesterUsage").empty().append("Forbrug for i går: " + convertUsage(usageYesterday()).toFixed(2) + " kr.");
+            $("#yesterUsage").empty().append("Forbrug for i går: " + convertUsage(usageYesterday()).toFixed(2) + " kr.");
         }
         else {
-//            $("#yesterUsage").empty().append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
+            $("#yesterUsage").empty().append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
         }
 
     });
@@ -48,7 +48,7 @@ $(document).ready(function () {
 //    var priceString = "Pris: " + (pricePerMWH[thisHour()] / 1000).toFixed(3) + " kr/kWh (" + goodPrice(pricePerMWH[thisHour()]) + ")";
 //    $("#pricing").append(priceString);
 
-    $("#pricing").append("Pris: " + getCookie("avgPrice") + " kr/kWh");
+    $("#pricing").append("Pris: " + getCookie("avgPrice") + " øre/kWh");
 
     var currentUsage = "Forbrug indtil videre: " + usageCurrent().toFixed(2) + " kWh.";
     $("#currentUsage").append(currentUsage);
@@ -57,8 +57,8 @@ $(document).ready(function () {
 //    $("#limit").append("Din grænse: " + limit + " kWh.");
     $("#limit").append("Din grænse: " + limitNew + " kWh.");
     $("#prognosis").append("Prognose: " + prognosis().toFixed(2) + " kWh.");
-//    $("#yesterUsage").append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
-    $("#yesterUsage").append("Forbrug for i går: ---- kWh.");
+    $("#yesterUsage").append("Forbrug for i går: " + usageYesterday().toFixed(2) + " kWh.");
+//    $("#yesterUsage").append("Forbrug for i går: ---- kWh.");
     
     //////////////NY TILFØJELSE////////////
     $("#dagForbrug").append("Dit daglige forbrug: " + getCookie("dagForbrug") + " kWh.");
@@ -292,7 +292,7 @@ function ratePerMin() {
 
 function convertCurrentUsage() {
 //    var foo = document.getElementById("limit").innerHTML.match(regexFloat); //Finds first set of float numbers
-    return usageCurrent() / limit * 100;
+    return usageCurrent() / limitNew * 100;
 }
 
 function convertUsage(func) { //Give one of above functions as parameter
